@@ -3,7 +3,7 @@
 #include<string.h>
 
 char data[28],temp[28],divisor[28];
-int l,i,j,N=16;
+int l,i,j,N;
 
 void xorl()
 {
@@ -16,16 +16,16 @@ void xorl()
     }
 }
 
-void crc()
+void crc() //gives remainder and stores in temp
 {
     for(i=0;i<N;i++)
         temp[i]=data[i];
     do
     {
-        if(temp[0]=='1')
+        if(temp[0]=='1') //apply division where dataword starts with 1
             xorl();
         for(j=0;j<N-1;j++)
-            temp[j]=temp[j+1];
+            temp[j]=temp[j+1]; //single shift
         temp[j]=data[i++];
     }
     while(i<=l+N-1);
@@ -39,8 +39,8 @@ void main()
         scanf("%s",&data);
         printf("Enter the divisor to be used for crc:\n");
         scanf("%s",&divisor);
-        N=strlen(divisor);
-        l=strlen(data);
+        N=strlen(divisor); //
+        l=strlen(data); //
         while(1)
         {
             printf("\nMENU\n");
@@ -57,7 +57,7 @@ void main()
                     for(i=l;i<l+N-1;i++) //padding with zeroes
                         data[i]='0';
                     crc();
-                    for(i=l;i<l+N-1;i++) //redundant bits
+                    for(i=l;i<l+N-1;i++) //redundant bits added to dataword
                         data[i]=temp[i-l];
                     printf("Divisor is: %s\n",divisor);
                     printf("Remainder is: %s\n",temp);
@@ -71,7 +71,7 @@ void main()
                     scanf("%s",&data);
                     crc();
                     printf("Remainder is: %s\n",temp);
-                    for(i=l;i<l+N-1;i++)
+                    for(i=l;i<l+N-1;i++) //remainder supposed to be zero for no error
                     {
                         if(temp[i-l]=='1')
                         {
