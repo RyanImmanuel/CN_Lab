@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<math.h>
-int gcd(int a, int h)
+int gcd(int a, int b)
 {   while(1)
-    {   int temp = a%h;
+    {   int temp = a%b;
         if(temp==0)
-            return h;
-        a = h;
-        h = temp;
+            return b;
+        a = b;
+        b = temp;
     }
 }
  int main()
