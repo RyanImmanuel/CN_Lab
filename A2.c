@@ -13,7 +13,8 @@ void checksum(int messages[], int n)
 }
 void printMessages(int messages[], int n)
 {
-    for (int i = 0; i <= n; i++) printf("\t%d", messages[i]); //i<=n because the arrays now have one extra element (checksum), i.e n messages + 1 checksum
+    for (int i = 0; i <= n; i++) 
+        printf("\t%d", messages[i]); //i<=n because the arrays now have one extra element (checksum), i.e n messages + 1 checksum
 }
 void main()
 {
